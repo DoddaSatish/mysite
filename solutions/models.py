@@ -19,7 +19,7 @@ class Job_notification(models.Model):
 
 class Company(models.Model):
     id = models.CharField(max_length=200,primary_key = True)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20000)
     img = models.CharField(max_length=200,default='')
 
 class Solution(models.Model):
