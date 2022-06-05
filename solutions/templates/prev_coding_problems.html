@@ -59,8 +59,8 @@ th{
         <ul>
           <li><a class="nav-link scrollto " href="{% url 'home' %}">Home</a></li>
 
-          <li><a class="nav-link scrollto active" href="{% url 'jobNotifications' %}">Job Notifications</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'prev_coding_problems' %}"">Previous coding problems</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'jobNotifications' %}">Job Notifications</a></li>
+          <li><a class="nav-link scrollto  active" href="{% url 'prev_coding_problems' %}">Previous coding problems</a></li>
 
           <li class="dropdown"><a href="#"><span>Our Courses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -88,7 +88,7 @@ th{
     <div class="row">
       <div class="col-sm-3"></div>
       <div class="col-sm-6">
-        <div class="row " id="jobs">
+        <div class="row " id="companies">
           
          
         </div>
@@ -123,7 +123,7 @@ th{
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
           <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="https://t.me/codingandcompanies" class="google-plus"><i class="bx bxl-telegram"></i></a>
           <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
 
@@ -157,117 +157,80 @@ th{
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script>
-    var jobs=JSON.parse("{{objects|escapejs}}");
+    var companies=JSON.parse("{{objects|escapejs}}");
     var s="";
-    var end=6;
-    if(jobs.length<=6){
-      for(var i=0;i<jobs.length;i++){
+    var end=9;
+    if(companies.length<=9){
+      for(var i=0;i<companies.length;i++){
         s += '<div class="col-sm-4" >\
               <div class="card shadow-sm">\
-                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+jobs[i].img+'  ></a>\
-                <div class="card-body">\
-                  <div class="card-title" style="white-space: nowrap; \
-                  width: 100%; \
-                  overflow: hidden;\
-                  text-overflow: ellipsis;">'+jobs[i].job_title+'</div>\
-                  <a href="offcampusjobs/'+jobs[i].id+'">More Details..</a>\
-                </div>\
+                <a href="prev_coding_questions/'+companies[i].id+'"><img  class="card-img-top" style="width: 100%; height: 125px;" src='+companies[i].img+'  ></a>\
               </div>\
               <br><br>\
           </div>';
       }
     }
     else{
-      for(var i=0;i<6;i++){
+      for(var i=0;i<9;i++){
         s += '<div class="col-sm-4" >\
               <div class="card shadow-sm">\
-                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+jobs[i].img+'  ></a>\
-                <div class="card-body">\
-                  <div class="card-title" style="white-space: nowrap; \
-                  width: 100%; \
-                  overflow: hidden;\
-                  text-overflow: ellipsis;">'+jobs[i].job_title+'</div>\
-                  <a href="offcampusjobs/'+jobs[i].id+'">More Details..</a>\
-                </div>\
+                <a href="prev_coding_questions/'+companies[i].id+'"><img  class="card-img-top" style="width: 100%; height: 125px;" src='+companies[i].img+'  ></a>\
               </div>\
               <br><br>\
           </div>';
       }
     }
-    $('#jobs').html(s);
+    $('#companies').html(s);
     function next()
     {
-      
-      if(end+6<=jobs.length)
+      if(end+9<=companies.length)
       {
         s="";
-        for(var i=end;i<end+6;i++){
+        for(var i=end;i<end+9;i++){
         s += '<div class="col-sm-4" >\
               <div class="card shadow-sm">\
-                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+jobs[i].img+'  ></a>\
+                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+companies[i].img+'  ></a>\
                 <div class="card-body">\
                   <div class="card-title" style="white-space: nowrap; \
                   width: 100%; \
                   overflow: hidden;\
-                  text-overflow: ellipsis;">'+jobs[i].job_title+'</div>\
-                  <a href="offcampusjobs/'+jobs[i].id+'">More Details..</a>\
+                  text-overflow: ellipsis;">'+companies[i].job_title+'</div>\
+                  <a href="prev_coding_questions/'+companies[i].id+'">More Details..</a>\
                 </div>\
               </div>\
               <br><br>\
           </div>';
 
       }
-      end+=6;
-      $('#jobs').html(s);
-      }
-      else
-      {
-        s="";
-         
-        for(var i=end;i<jobs.length;i++){
-        s += '<div class="col-sm-4" >\
-              <div class="card shadow-sm">\
-                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+jobs[i].img+'  ></a>\
-                <div class="card-body">\
-                  <div class="card-title" style="white-space: nowrap; \
-                  width: 100%; \
-                  overflow: hidden;\
-                  text-overflow: ellipsis;">'+jobs[i].job_title+'</div>\
-                  <a href="offcampusjobs/'+jobs[i].id+'">More Details..</a>\
-                </div>\
-              </div>\
-              <br><br>\
-          </div>';
-
-      }
-      $('#jobs').html(s);
+      end+=9;
+      $('#companies').html(s);
       }
     }
     function prev()
     {
       
-      if(end-6>=0)
+      if(end-9>=0)
       {
         s="";
-        for(var i=end-6;i<end;i++){
+        for(var i=end-9;i<end;i++){
         s += '<div class="col-sm-4" >\
               <div class="card shadow-sm">\
-                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+jobs[i].img+'  ></a>\
+                  <img  class="card-img-top" style="width: 100%; height: 125px;" src='+companies[i].img+'  ></a>\
                 <div class="card-body">\
                   <div class="card-title" style="white-space: nowrap; \
                   width: 100%; \
                   overflow: hidden;\
-                  text-overflow: ellipsis;">'+jobs[i].job_title+'</div>\
-                  <a href="offcampusjobs/'+jobs[i].id+'">More Details..</a>\
+                  text-overflow: ellipsis;">'+companies[i].job_title+'</div>\
+                  <a href="prev_coding_questions/'+companies[i].id+'">More Details..</a>\
                 </div>\
               </div>\
               <br><br>\
           </div>';
 
       }
-      if(end>6)
-      end-=6;
-      $('#jobs').html(s);
+      if(end>9)
+      end-=9;
+      $('#companies').html(s);
       }
      
     }

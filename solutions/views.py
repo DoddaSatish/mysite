@@ -1,6 +1,8 @@
 import base64
 from django.shortcuts import render
 from solutions.models import *
+from django.forms.models import model_to_dict
+from json import dumps
 def solution(request,id):
     var=Solution.objects.get(id=id)
     var.code=base64.b64decode(var.code).decode();
@@ -14,8 +16,14 @@ def job_notifications(request ,id):
     var.job_description = var.job_description.split(',')
     return render(request,'job_notifications.html',{'job_notification':var});
 def jobNotifications(request):
-    var=Job_notification.objects.all()
-    return render(request,'job_notifications_home.html',{'objects':var})
-
+    var=[model_to_dict(x) for x in Job_notification.objects.all() ]
+    return render(request,'job_notifications_home.html',{'objects':dumps(var)})
+def prev_coding_problems(request):
+    var=[model_to_dict(x) for x in Company.objects.all() ]
+    return render(request,'prev_coding_problems.html',{'objects':dumps(var)})
+def coding_problems(request,id):
+    company=Company.objects.get(id=id)
+    problems = Solution.objects.all().filter(company=company)
+    return render(request,'coding_problem.html',{'problems':problems})
 
 # Create your views here.
