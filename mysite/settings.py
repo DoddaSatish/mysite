@@ -76,10 +76,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST'     : 'app-4e4d7003-d061-4d9a-9188-cd3f18c568f6-do-user-11731410-0.b.db.ondigitalocean.com',
+        'PORT'     : '25060',
+        'NAME' : 'db',
+        'PASSWORD' : 'AVNS_GsaLhIS1e70hpA9',
+        'USER' : 'db',
+        
     }
 }
+
 
 
 # Password validation
