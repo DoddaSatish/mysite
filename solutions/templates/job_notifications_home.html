@@ -158,6 +158,10 @@ th{
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script>
+         function scrolling(){
+        var element = document.getElementById("jobs");
+        element.scrollIntoView({behavior: "smooth"});
+      }
     var jobs=JSON.parse("{{objects|escapejs}}");
     var s="";
     var end=6;
@@ -199,10 +203,12 @@ th{
     $('#jobs').html(s);
     function next()
     {
+      scrolling();
       if(flag==0)
       flag=1;
       if(flag==2){
       flag=1;
+     
       end+=6;
       }
       if(end+6<=jobs.length)
@@ -252,9 +258,11 @@ th{
     }
     function prev()
     {
+      scrolling();
       if(flag==1){
       end-=6;
       flag=2;
+      
       }
       if(flag==0)
       flag=2;

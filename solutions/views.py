@@ -12,8 +12,8 @@ def home(request):
     return render(request,'home.html');
 def job_notifications(request ,id):
     var=Job_notification.objects.get(id=id)
-    var.qualification = var.qualification.split(',')
-    var.job_description = var.job_description.split(',')
+    var.qualification = var.qualification.split('#')
+    var.job_description = var.job_description.split('#')
     return render(request,'job_notifications.html',{'job_notification':var});
 def jobNotifications(request):
     var = []
