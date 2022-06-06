@@ -26,5 +26,10 @@ class Company(models.Model):
 class Solution(models.Model):
     id = models.IntegerField(primary_key = True)
     title = models.CharField(max_length=100)
+    description=models.CharField(max_length=2000,default="")
+    input_format=models.CharField(max_length=2000,default="")
+    output_format=models.CharField(max_length=2000,default="")
+    sample_input=models.CharField(max_length=2000,default="")
+    sample_output=models.CharField(max_length=2000,default="")
     code = models.CharField(max_length=2000,null=False)
     company = models.ForeignKey(Company,on_delete=models.CASCADE,default=None)
