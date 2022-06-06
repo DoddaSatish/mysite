@@ -5,6 +5,7 @@ class Job_notification(models.Model):
     id=models.CharField(max_length=500,primary_key=True);
     img=models.CharField(max_length=500,default='')
     company_name=models.CharField(max_length=100);
+    posted_on=models.DateTimeField(null=True)
     job_title=models.CharField(max_length=200);
     designation=models.CharField(max_length=200);
     eligibility=models.CharField(max_length=200);

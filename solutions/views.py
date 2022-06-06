@@ -16,7 +16,7 @@ def job_notifications(request ,id):
     var.job_description = var.job_description.split(',')
     return render(request,'job_notifications.html',{'job_notification':var});
 def jobNotifications(request):
-    var=[model_to_dict(x) for x in Job_notification.objects.all() ]
+    var=[model_to_dict(x) for x in Job_notification.objects.order_by('posted_on') ]
     return render(request,'job_notifications_home.html',{'objects':dumps(var)})
 def prev_coding_problems(request):
     var=[model_to_dict(x) for x in Company.objects.all() ]
