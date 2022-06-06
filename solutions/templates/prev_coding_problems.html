@@ -163,6 +163,7 @@ th{
     var companies=JSON.parse("{{objects|escapejs}}");
     var s="";
     var end=9;
+    var flag=0;
     if(companies.length<=9){
       for(var i=0;i<companies.length;i++){
         s += '<div class="col-sm-4" >\
@@ -186,6 +187,13 @@ th{
     $('#companies').html(s);
     function next()
     {
+      if(flag==0)
+      flag=1;
+      if(flag==2)
+      {
+        flag=1;
+        end+=9;
+      }
       if(end+9<=companies.length)
       {
         s="";
@@ -211,7 +219,13 @@ th{
     }
     function prev()
     {
-      
+      if(flag==0)
+      flag=2;
+      if(flag==2)
+      {
+        flag=1;
+        end-=9;
+      }
       if(end-9>=0)
       {
         s="";

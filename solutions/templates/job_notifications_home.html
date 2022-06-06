@@ -161,6 +161,7 @@ th{
     var jobs=JSON.parse("{{objects|escapejs}}");
     var s="";
     var end=6;
+    var flag=0;
     if(jobs.length<=6){
       for(var i=0;i<jobs.length;i++){
         s += '<div class="col-sm-4" >\
@@ -198,7 +199,12 @@ th{
     $('#jobs').html(s);
     function next()
     {
-      
+      if(flag==0)
+      flag=1;
+      if(flag==2){
+      flag=1;
+      end+=6;
+      }
       if(end+6<=jobs.length)
       {
         s="";
@@ -218,7 +224,6 @@ th{
           </div>';
 
       }
-      if(end+6<jobs.length)
       end+=6;
       $('#jobs').html(s);
       }
@@ -247,9 +252,15 @@ th{
     }
     function prev()
     {
-      
+      if(flag==1){
+      end-=6;
+      flag=2;
+      }
+      if(flag==0)
+      flag=2;
       if(end-6>=0)
       {
+        
         s="";
         for(var i=end-6;i<end;i++){
         s += '<div class="col-sm-4" >\
@@ -267,7 +278,7 @@ th{
           </div>';
 
       }
-      if(end>6)
+      //if(end>=6)
       end-=6;
       $('#jobs').html(s);
       }
