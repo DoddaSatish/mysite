@@ -9,4 +9,5 @@ urlpatterns=[
     path('jobNotifications',views.jobNotifications,name='jobNotifications'),
     path('prev_coding_problems',views.prev_coding_problems,name="prev_coding_problems"),
     re_path(r'^prev_coding_questions/(?P<id>[^/]+)',views.coding_problems,name='solutions'),
+    path('courses',views.courses,name="courses")
 ]

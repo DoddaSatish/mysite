@@ -17,7 +17,7 @@ def job_notifications(request ,id):
     return render(request,'job_notifications.html',{'job_notification':var});
 def jobNotifications(request):
     var = []
-    for x in Job_notification.objects.order_by('posted_on'):
+    for x in Job_notification.objects.order_by('posted_on')[::-1]:
         obj = model_to_dict(x)
         del obj['posted_on']
         var.append(obj)
@@ -29,5 +29,7 @@ def coding_problems(request,id):
     company=Company.objects.get(id=id)
     problems = Solution.objects.all().filter(company=company)
     return render(request,'coding_problem.html',{'problems':problems})
+def courses(request):
+    return render(request,'courses.html');
 
 # Create your views here.
