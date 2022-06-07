@@ -1,5 +1,6 @@
 from pydoc import describe
 from django.db import models
+from django.forms import CharField
 
 class Job_notification(models.Model):
     id=models.CharField(max_length=500,primary_key=True);
@@ -33,3 +34,18 @@ class Solution(models.Model):
     sample_output=models.CharField(max_length=2000,default="")
     code = models.CharField(max_length=2000,null=False)
     company = models.ForeignKey(Company,on_delete=models.CASCADE,default=None)
+
+class Course(models.Model):
+    id=models.CharField(max_length=200,primary_key=True)
+    name=models.CharField(max_length=200);
+class Quiz(models.Model):
+    id=models.IntegerField(primary_key=True)
+    description=models.CharField(max_length=4000,default="")
+    is_script=models.BooleanField(default=False)
+    script=models.CharField(max_length=5000,default="",null=True,blank=True)
+    choice1=models.CharField(max_length=200, default="")
+    choice2=models.CharField(max_length=200,default="")
+    choice3=models.CharField(max_length=200,default="")
+    choice4=models.CharField(max_length=200,default="")
+    correct_choice=models.CharField(max_length=200,default="")
+    course=models.ForeignKey(Course,on_delete=models.CASCADE,default=None)

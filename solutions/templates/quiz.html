@@ -7,14 +7,16 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8097110752337784"
   crossorigin="anonymous"></script>
-  <title>{{solution.title}}</title>
+  <title>{{course.name}} Quiz</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/J.jpg' %}" rel="icon">
   <link href="{% static 'assets/img/J.jpg' %}" rel="apple-touch-icon">
-
+  <link rel="stylesheet" href="{% static 'assets/css/quiz.css' %}">
+  <!-- FontAweome CDN Link for Icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -47,12 +49,6 @@
           bottom: 0;
           left: 0;
       }
-      footer {
-    clear: both;
-    position: relative;
-  bottom: -45px;
-  background-color: #e5ffff;
-}
       .h{
   padding-left:30px;
   padding-right:60px;
@@ -64,7 +60,35 @@
         position: relative;
         border-radius: 5px;
       }
-
+      pre{
+          display: block;
+          padding: 9.5px;
+          margin: 0 0 10px;
+          font-size: 15px;
+          line-height: 1.42857143;
+          color: #333;
+          word-break: break-all;
+          word-wrap: break-word;
+          background-color: #f5f5f5;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        ::-webkit-scrollbar {
+          width: 5px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: rgb(202, 202, 202); 
+        }
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgb(141, 141, 141); 
+        }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"></script>
 </head>
@@ -86,13 +110,13 @@
           <li><a class="nav-link scrollto " href="{% url 'jobNotifications' %}">Job Notifications</a></li>
           <li><a class="nav-link scrollto" href="{% url 'prev_coding_problems' %}">Previous coding problems</a></li>
 
-          <li class="dropdown"><a href="#"><span>Our Courses</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Take A Quiz?</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="{% url 'courses' %}">C Programming</a></li>
-              <li><a href="{% url 'courses' %}">CPP Programming</a></li>
-              <li><a href="{% url 'courses' %}">Python Programming</a></li>
-              <li><a href="{% url 'courses' %}">Java Programming</a></li>
-              <li><a href="{% url 'courses' %}">DataStructures </a></li>
+              <li><a href="quiz/c-programming">C Programming</a></li>
+              <li><a href="quiz/cpp-programming">CPP Programming</a></li>
+              <li><a href="quiz/python-programming">Python Programming</a></li>
+              <li><a href="quiz/Java-programming">Java Programming</a></li>
+              <li><a href="quiz/dataStructures">DataStructures </a></li>
 
             </ul>
           </li>
@@ -104,21 +128,69 @@
 
     </div>
   </header><!-- End Header -->
+  <div class="continer-fluid" style="min-height: 100vh;width: 100%;">
+  <div class="start_btn"><button>Start Quiz</button></div>
 
-
-  <div style="padding-top:120px; min-height: calc(100vh - 60px)" class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3">
+  <!-- Info Box -->
+  <div class="info_box">
+      <div class="info-title"><span>Some Rules of this Quiz</span></div>
+      <div class="info-list">
+          <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
+          <div class="info">2. Once you select your answer, it can't be undone.</div>
+          <div class="info">3. You can't select any option once time goes off.</div>
+          <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+          <div class="info">5. You'll get points on the basis of your correct answers.</div>
       </div>
-      <div class="col-sm-6">
-        <h1 style="text-align:center;">We are Working on It </h1>
-
+      <div class="buttons">
+          <button class="quit">Exit Quiz</button>
+          <button class="restart">Continue</button>
       </div>
-      <div class="col-sm-3">
-
-      </div>
-    </div>
   </div>
+
+  <!-- Quiz Box -->
+  <div class="quiz_box">
+      <header>
+          <div class="title">{{course.name}}</div>
+          <div class="timer">
+              <div class="time_left_txt">Time Left</div>
+              <div class="timer_sec">15</div>
+          </div>
+          <div class="time_line"></div>
+      </header>
+      <div class="section">
+          <div class="que_text">
+              <!-- Here I've inserted question from JavaScript -->
+          </div>
+          <div class="option_list">
+              <!-- Here I've inserted options from JavaScript -->
+          </div>
+        </div>
+
+      <!-- footer of Quiz Box -->
+      <div class="quiz_box_footer">
+          <div class="total_que">
+              <!-- Here I've inserted Question Count Number from JavaScript -->
+          </div>
+          <button class="next_btn">Next Que</button>
+        </div>
+  </div>
+
+  <!-- Result Box -->
+  <div class="result_box">
+      <div class="icon">
+          <i class="fas fa-crown"></i>
+      </div>
+      <div class="complete_text">You've completed the Quiz!</div>
+      <div class="score_text">
+          <!-- Here I've inserted Score Result from JavaScript -->
+      </div>
+      <div class="buttons">
+          <button class="restart">Replay Quiz</button>
+          <button class="quit">Quit Quiz</button>
+      </div>
+  </div>
+  </div>
+  
   <footer id="footer">
 
     <div class="footer-top">
@@ -175,6 +247,26 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    var quiz = JSON.parse("{{quiz|escapejs}}");
+    var questions = [];
+    for(var i=0;i<quiz.length;i++){
+      questions.push({
+        numb:i+1,
+        question: quiz[i].description,
+    answer: quiz[i].correct_choice,
+    options: [
+      quiz[i].choice1,
+      quiz[i].choice2,
+      quiz[i].choice3,
+      quiz[i].choice4
+    ]
+      });
+    }
+  </script>
+  <!-- Inside this JavaScript file I've coded all Quiz Codes -->
+  <script src="{% static 'assets/js/script.js' %}"></script>
+
 </body>
 
 

@@ -5,3 +5,5 @@ from solutions.models import *
 admin.site.register(Solution)
 admin.site.register(Job_notification)
 admin.site.register(Company)
+admin.site.register(Course)
+admin.site.register(Quiz)

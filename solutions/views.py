@@ -3,6 +3,7 @@ from django.shortcuts import render
 from solutions.models import *
 from django.forms.models import model_to_dict
 from json import dumps
+import random
 def solution(request,id):
     var=Solution.objects.get(id=id)
     var.code=base64.b64decode(var.code).decode();
@@ -29,7 +30,11 @@ def coding_problems(request,id):
     company=Company.objects.get(id=id)
     problems = Solution.objects.all().filter(company=company)
     return render(request,'coding_problem.html',{'problems':problems})
-def courses(request):
-    return render(request,'courses.html');
+def quiz(request,id):
+    course = Course.objects.get(id=id)
+    quiz = [model_to_dict(x) for x in Quiz.objects.filter(course=course)]
+    random.shuffle(quiz)
+    return render(request,'quiz.html',{'quiz':dumps(quiz),'course':course});
+
 
 # Create your views here.
