@@ -20,6 +20,7 @@ def jobNotifications(request):
     var = []
     for x in Job_notification.objects.order_by('posted_on')[::-1]:
         obj = model_to_dict(x)
+        #print(obj['posted_on'],obj['job_title'])
         del obj['posted_on']
         var.append(obj)
     return render(request,'job_notifications_home.html',{'objects':dumps(var)})
