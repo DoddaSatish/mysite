@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{% static 'assets/css/quiz.css' %}">
   <!-- FontAweome CDN Link for Icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -60,7 +61,7 @@
         position: relative;
         border-radius: 5px;
       }
-      pre{
+      xmp{
           display: block;
           padding: 9.5px;
           margin: 0 0 10px;
@@ -112,11 +113,11 @@
 
           <li class="dropdown"><a href="#"><span>Take A Quiz?</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="c-programming">C Programming</a></li>
-              <li><a href="cpp-programming">CPP Programming</a></li>
-              <li><a href="python-programming">Python Programming</a></li>
-              <li><a href="Java-programming">Java Programming</a></li>
-              <li><a href="dataStructures">DataStructures </a></li>
+              <li><a href="/quiz/c-programming">C Programming</a></li>
+              <li><a href="/quiz/cpp-programming">CPP Programming</a></li>
+              <li><a href="/quiz/python-programming">Python Programming</a></li>
+              <li><a href="/quiz/Java-programming">Java Programming</a></li>
+              <li><a href="/quiz/dataStructures">DataStructures </a></li>
 
             </ul>
           </li>
@@ -128,7 +129,7 @@
 
     </div>
   </header><!-- End Header -->
-  <div class="continer-fluid" style="min-height: 100vh;width: 100%;">
+  <div class="continer-fluid" style="min-height: 100vh;padding-top: 200px;">
   <div class="start_btn"><button>Start Quiz</button></div>
 
   <!-- Info Box -->
@@ -149,18 +150,20 @@
 
   <!-- Quiz Box -->
   <div class="quiz_box">
-      <header>
+      <div class="header">
           <div class="title">{{course.name}}</div>
           <div class="timer">
               <div class="time_left_txt">Time Left</div>
               <div class="timer_sec">15</div>
           </div>
           <div class="time_line"></div>
-      </header>
+        </div>
       <div class="section">
           <div class="que_text">
               <!-- Here I've inserted question from JavaScript -->
           </div>
+          <xmp class="script">
+          </xmp>
           <div class="option_list">
               <!-- Here I've inserted options from JavaScript -->
           </div>
@@ -255,6 +258,8 @@
         numb:i+1,
         question: quiz[i].description,
     answer: quiz[i].correct_choice,
+    is_script: quiz[i].is_script,
+    code: decode(quiz[i].script),
     options: [
       quiz[i].choice1,
       quiz[i].choice2,
@@ -262,6 +267,15 @@
       quiz[i].choice4
     ]
       });
+    }
+    function decode(str)
+    {
+      var escaped = escape(atob(str || ""));
+          try {
+              return decodeURIComponent(escaped);
+          } catch {
+              return unescape(escaped);
+          }
     }
   </script>
   <!-- Inside this JavaScript file I've coded all Quiz Codes -->

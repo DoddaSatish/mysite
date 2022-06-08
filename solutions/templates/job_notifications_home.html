@@ -62,14 +62,13 @@ th{
 
           <li><a class="nav-link scrollto active" href="{% url 'jobNotifications' %}">Job Notifications</a></li>
           <li><a class="nav-link scrollto" href="{% url 'prev_coding_problems' %}">Previous coding problems</a></li>
-
-          <li class="dropdown"><a href="#"><span>Take A Quiz?</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="javascript:void(0)"><span>Take A Quiz?</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="quiz/c-programming">C Programming</a></li>
-              <li><a href="quiz/cpp-programming">CPP Programming</a></li>
-              <li><a href="quiz/python-programming">Python Programming</a></li>
-              <li><a href="quiz/Java-programming">Java Programming</a></li>
-              <li><a href="quiz/dataStructures">DataStructures </a></li>
+              <li><a href="/quiz/c-programming">C Programming</a></li>
+              <li><a href="/quiz/cpp-programming">CPP Programming</a></li>
+              <li><a href="/quiz/python-programming">Python Programming</a></li>
+              <li><a href="/quiz/Java-programming">Java Programming</a></li>
+              <li><a href="/quiz/dataStructures">DataStructures </a></li>
 
             </ul>
           </li>
@@ -89,6 +88,7 @@ th{
     <div class="row">
       <div class="col-sm-3"></div>
       <div class="col-sm-6">
+        <div id="start"></div>
         <div class="row " id="jobs">
           
          
@@ -159,8 +159,8 @@ th{
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script>
          function scrolling(){
-        var element = document.getElementById("jobs");
-        element.scrollIntoView({behavior: "smooth"});
+        var element = document.getElementById("start");
+        element.scrollIntoView({behavior: "smooth",block:"start",inline:"start"});
       }
     var jobs=JSON.parse("{{objects|escapejs}}");
     var s="";
