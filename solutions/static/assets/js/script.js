@@ -159,6 +159,7 @@ function showResult(){
     const scoreText = result_box.querySelector(".score_text");
         let scoreTag = "<span>You've scored <p>"+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
         scoreText.innerHTML = scoreTag;
+        
     
 }
 
